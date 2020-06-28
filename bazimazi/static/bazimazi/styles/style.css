@@ -1,0 +1,432 @@
+html, body {
+  height: 100%;
+}
+
+.text-blue {
+  color: #1da1f2;
+}
+
+.text-black {
+  color: #1f1f1f;
+}
+
+.text-grey {
+  color: #9b9b9b;
+}
+
+.ad-table-heads, .main-body a:hover, .main-body a {
+  color: #7f7f7f;
+}
+
+.top-nav {
+  height: 7%;
+  padding: 12px 15px;
+  border-bottom: 1px solid #dededf;
+}
+
+@media screen and (min-height: 800px) and (max-height: 1000px) {
+  .top-nav {
+    height: 7%;
+  }
+}
+@media screen and (max-height: 800px) {
+  .top-nav {
+    height: 10%;
+  }
+}
+.navbar-links {
+  color: #1f1f1f;
+  display: block;
+  padding: 0.5rem 1rem;
+}
+
+.navbar-links:hover {
+  color: #9b9b9b;
+  text-decoration: none;
+}
+
+.modal-btn {
+  color: #9b9b9b;
+  background-color: white;
+  border: 1px solid #dededf;
+}
+
+.modal-btn:hover {
+  color: #7f7f7f;
+  border: 1px solid #b2b3b3;
+}
+
+.ad-btn {
+  background-color: #a62626;
+  color: white;
+  font-weight: bold;
+}
+
+.ad-btn:hover {
+  background-color: #be3737;
+  color: white;
+}
+
+.btn-sm {
+  border: 1px solid #9b9b9b;
+  border-radius: 7%;
+  padding: 7px 10px;
+}
+
+.btn-search {
+  border: 1px solid #dededf;
+}
+
+.search-box {
+  border: 1px solid #dededf;
+}
+
+.cities {
+  width: 18%;
+  margin: 7px;
+  text-align: center;
+  color: #a62626;
+  font-weight: bold;
+  background-color: white;
+  border: 1px solid #a62626;
+  border-radius: 4%;
+  padding: 10px 30px;
+}
+
+@media screen and (min-width: 800px) and (max-width: 1000px) {
+  .cities {
+    width: 30%;
+  }
+}
+@media screen and (max-width: 800px) {
+  .cities {
+    width: 45%;
+  }
+}
+.cities:hover {
+  cursor: pointer;
+  color: white;
+  background-color: #a62626;
+  text-decoration: none;
+}
+
+.category-text-title {
+  color: #6d6d6d;
+}
+
+.category-text-title:hover {
+  cursor: default;
+}
+
+.category-text {
+  color: #6d6d6d;
+}
+
+.category-text:hover {
+  color: #a62626;
+}
+
+.left-nav {
+  width: 280px;
+  border-bottom: 1px solid gainsboro;
+  margin: 0px;
+}
+
+.custom-control-input:checked ~ .custom-control-label::before {
+  color: #fff;
+  border-color: #a62626;
+  background-color: #a62626;
+}
+
+.filtering-btn {
+  color: #1f1f1f;
+  text-decoration: none;
+}
+
+.filtering-btn:hover {
+  text-decoration: none;
+  color: #1f1f1f;
+}
+
+.my-ads {
+  width: 60%;
+  height: 400px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.nav-my-ads {
+  height: 30px;
+  border-bottom: 2px solid #dededf;
+}
+
+.navbar-links-my-ads {
+  color: #9b9b9b;
+  bottom: 10px;
+}
+
+.navbar-links-my-ads:hover {
+  color: #1f1f1f;
+  text-decoration: none;
+}
+
+.active-my-ads {
+  border-bottom: 2px solid #a62626;
+  padding-bottom: 6px;
+  color: #a62626;
+  border-collapse: collapse;
+  text-decoration: none;
+}
+
+.bottom-content {
+  width: 60%;
+  height: 400px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.publish-ad {
+  height: 93%;
+  width: 50%;
+}
+
+@media screen and (min-width: 800px) and (max-width: 1000px) {
+  .publish-ad {
+    width: 60%;
+  }
+}
+@media screen and (max-width: 800px) {
+  .publish-ad {
+    width: 90%;
+  }
+}
+.publish-ad-title {
+  font-weight: bold;
+  font-size: 25px;
+}
+
+.publish-ad-cat {
+  border: 1px solid #ededed;
+  border-radius: 2px;
+  padding: 10px;
+  height: 74%;
+}
+
+.publish-ad-elem {
+  margin: 0px 10px;
+  border-bottom: 1px solid #ededed;
+  padding: 18px;
+}
+
+.publish-ad-elem:hover {
+  background-color: #fafafa;
+  cursor: pointer;
+}
+
+.publish-ad-elem-last {
+  margin: 0px 10px;
+  margin-bottom: 10px;
+  padding: 18px;
+}
+
+.publish-ad-elem-last:hover {
+  background-color: #fafafa;
+  cursor: pointer;
+}
+
+.link-no-un {
+  color: black;
+  text-decoration: none;
+}
+
+.link-no-un:hover {
+  color: black;
+  text-decoration: none;
+}
+
+.change-cat {
+  height: 13%;
+  border: 1px solid #ededed;
+  border-radius: 2px;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+
+@media screen and (min-width: 800px) and (max-width: 1000px) {
+  .change-cat {
+    height: 13%;
+  }
+}
+@media screen and (max-width: 800px) {
+  .change-cat {
+    height: 10%;
+  }
+}
+.change-link {
+  color: #a62626;
+  vertical-align: center;
+}
+
+.ad-info {
+  border: 1px solid #ededed;
+  padding: 20px 25px;
+}
+
+.my-ads-text {
+  text-align: center;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.aside-nav {
+  height: 90%;
+}
+
+.main-search {
+  width: 70%;
+  height: 55px;
+}
+
+@media screen and (min-width: 775px) and (max-width: 1000px) {
+  .main-search {
+    width: 70%;
+  }
+}
+@media screen and (max-width: 775px) {
+  .main-search {
+    width: 93%;
+  }
+}
+.red-btn {
+  padding: 2px 15px;
+  border: 1px solid #a62626;
+  background-color: white;
+  color: #a62626;
+  border-radius: 15px;
+}
+
+.red-btn:hover {
+  color: white;
+  background-color: #a62626;
+  cursor: pointer;
+}
+
+.main-body a {
+  border-bottom: 1px solid #dededf;
+  float: left;
+  position: relative;
+  margin: 15px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+.main-body a:after {
+  border-bottom: 0px solid white;
+  content: "";
+  display: block;
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  height: 1px;
+  width: 0;
+  background: transparent;
+  text-decoration: none;
+}
+.main-body a:after {
+  transition: width 0.5s ease, background-color 0.5s ease, left 0.5s ease;
+  text-decoration: none;
+}
+.main-body a:hover:after {
+  width: 100%;
+  left: 0;
+  background: #a62626;
+  text-decoration: none;
+}
+.ad {
+  width: 30%;
+}
+
+@media screen and (min-width: 1200px) and (max-width: 1500px) {
+  .ad {
+    width: 30%;
+  }
+}
+@media screen and (min-width: 600px) and (max-width: 1200px) {
+  .ad {
+    width: 40%;
+  }
+}
+@media screen and (max-width: 600px) {
+  .ad {
+    width: 90%;
+  }
+}
+.ad-name {
+  float: right;
+}
+
+.ad-price {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+}
+
+.ad-image {
+  height: auto;
+}
+
+.ad-title {
+  font-size: 30px;
+  font-weight: 500;
+}
+
+.ad-phone {
+  color: #a62626;
+}
+
+.copy-btn {
+  color: black;
+  font-size: 13px;
+  padding: 5px 10px;
+  border: 1px solid black;
+  border-radius: 4px;
+}
+
+.copy-btn:hover {
+  background-color: #dededf;
+}
+
+.ad-btns {
+  color: black;
+  padding: 5px 8px;
+  border: 1px solid black;
+  border-radius: 4px;
+}
+
+.ad-btns:hover {
+  background-color: #dededf;
+}
+
+.ad-table-rows {
+  border-bottom: 1px solid #dededf;
+}
+
+.ad-table-heads {
+  font-weight: normal;
+}
+
+.sign-form {
+  width: 700px;
+  margin: 0 auto;
+  color: #a62626;
+}
+
+@media screen and (max-width: 700px) {
+  .sign-form {
+    width: 90%;
+  }
+}
+
+/*# sourceMappingURL=style.css.map */

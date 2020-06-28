@@ -1,0 +1,76 @@
+{% load static %}
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+    <link rel="icon" href="{% static "bazimazi/images/bazimazi-icon-3.png" %}" type="image/gif" sizes="16x16">
+
+    <link rel="stylesheet" href="{% static "bazimazi/styles/style.css" %}">
+
+    <title>Verify</title>
+
+  </head>
+  <body>
+
+    <div class="sign-form pt-5">
+
+      <img src="{% static "bazimazi/images/bazimazi-icon-3.png" %}" alt="Pizza" height="80" width="80" class="d-block mx-auto">
+
+      <div class="alert alert-danger mt-3" role="alert" id="alert">
+        The code your entered is not correct. Try again!
+      </div>
+
+      <form class="mt-3" action="{% url 'add_user' %}" method="post" id="code-form">
+
+        {% csrf_token %}
+
+        <div class="mb-3">
+          A code has been sent to your email address.
+        </div>
+
+        <div class="form-group">
+          <label for="code">Code</label>
+          <input type="text" class="form-control w-100" id="code" name="code" placeholder="Enter your name...">
+        </div>
+
+        <button type="submit" class="btn submit ad-btn" name="button">Submit</button>
+
+      </form>
+
+    </div>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+
+    <script type="text/javascript">
+      $(document).ready( function(){
+        $("#alert").hide()
+
+        var code = "{{code}}";
+
+        $("#code-form").submit( function() {
+          code_entered = $("#code").val();
+
+          if (code_entered !== code){
+
+            $("#alert").show();
+            return false;
+
+          }
+        });
+      });
+
+    </script>
+
+  </body>
+</html>

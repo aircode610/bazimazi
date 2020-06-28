@@ -1,0 +1,989 @@
+{% load static %}
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="{% static "bazimazi/styles/style.css" %}">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+
+    <link rel="icon" href="{% static "bazimazi/images/bazimazi-icon-3.png" %}" type="image/gif" sizes="16x16">
+
+    <title>BaziMazi</title>
+  </head>
+  <body>
+
+    <nav class="navbar navbar-expand-lg navbar-light top-nav px-2">
+
+      <a class="navbar-brand text-blue mr-0" href="{% url 'index' %}">BaziMazi</a>
+      <form class="form-inline ml-3 mr-none d-none d-sm-none d-md-block mr-auto">
+        <div class="mr-3">
+          <button type="button" class="btn modal-btn pr-0" data-toggle="modal" data-target="#city-modal">
+             <span id="city-btn">New York</span>
+            <img src="{% static "bazimazi/images/dropdown.png" %}" class="modal-btn-img ml-1 mr-2" width="20" height="20" alt="">
+          </button>
+        </div>
+      </form>
+      <form class="form-inline d-block d-sm-block d-md-none mr-auto ml-2">
+        <div class="ml-0">
+          <button type="button" class="btn modal-btn p-0 pl-2 ml-0" style="border:1px solid white;" data-toggle="modal" data-target="#city-modal">
+             <span id="city-btn-2">New York</span>
+            <img src="{% static "bazimazi/images/dropdown.png" %}" class="modal-btn-img " width="20" height="20" alt="">
+          </button>
+        </div>
+      </form>
+      <div class="modal fade bd-example-modal-xl" id="city-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+        <div class="modal-dialog modal-xl" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLongTitle">Choose your state</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body p-4 d-none d-sm-block">
+              <br>
+              <span class=" text-grey-dark">Most visited states:</span>
+              <div class="d-md-flex flex-wrap mt-3">
+                <button class="cities" value="{{state.name}}">California</button>
+                <button class="cities" value="{{state.name}}">New Jersey</button>
+                <button class="cities" value="{{state.name}}">Alaska</button>
+                <button class="cities" value="{{state.name}}">Massachusetts</button>
+                <button class="cities" value="{{state.name}}">New York</button>
+                <button class="cities" value="{{state.name}}">Texas</button>
+                <button class="cities" value="{{state.name}}">Indiana</button>
+              </div>
+              <br>
+              <span class="text-grey-dark">All the states:</span>
+              <div class="d-md-flex flex-wrap mt-3">
+                {% for state in states %}
+                  <button value="{{state.name}}" class="cities">{{state.name}}</button>
+                {% endfor %}
+              </div>
+            </div>
+            <div class="modal-body p-4 d-block d-sm-none">
+              <input type="text" name="example" id="city-value" class="form-control" list="cities">
+              <datalist id="cities">
+                {% for state in states %}
+                  <option value="{{state.name}}" class="cities"></option>
+                {% endfor %}
+              </datalist>
+
+              <br>
+
+              <button class="btn ad-btn px-2" id="choose" type="button">Choose</button>
+
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+        <div class="navbar-nav">
+          <a class="nav-item navbar-links" href="{% url 'myads' %}">My ads</a>
+          <a class="nav-item navbar-links" href="{% url 'chat' %}" target="_blank">Chat</a>
+        </div>
+      </div>
+
+      <form class="form-inline mr-1">
+        <a href="{% url 'publish_ad' %}"><button class="btn ad-btn px-2" type="button">Publish an ad</button></a>
+      </form>
+
+      <div class="dropdown d-block d-sm-block d-md-block d-lg-none">
+        <a class="btn btn-sm ml-0" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <span class="navbar-toggler-icon"></span>
+        </a>
+        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuLink">
+          <a class="dropdown-item" href="{% url 'myads' %}">My ads</a>
+          <a class="dropdown-item" href="{% url 'chat' %}" target="_blank">Chat</a>
+        </div>
+      </div>
+
+    </nav>
+
+    <div class="aside-nav container-fluid p-0">
+      <div class="row mx-0">
+        <div class="nav ml-2 col-xl-2 col-lg-3 col-md-3 col-sm-0 d-none d-sm-none d-md-block">
+          <aside class="nav d-sm-none d-md-inline-flex flex-column left-nav d-none">
+            <p class="category-text-title mt-3 mb-0">Categories</p>
+            <ul class="nav flex-column mt-1 mb-3">
+              {% for category in categories %}
+                <li class="nav-item">
+                  <a class="nav-link category-text pl-2 category-link" href="#" data-category="{{category.name}}"><img src="{{category.image.url}}" width="25" height="25" alt=""> {{category.name}} </a>
+                </li>
+              {% endfor %}
+            </ul>
+          </aside>
+          <div class="py-2 px-0 left-nav d-none d-sm-none d-md-block">
+            <a class="filtering-btn" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+              <span class="mx-1">Price</span><img src="{% static "bazimazi/images/dropdown.png" %}" width="20" height="20" class="float-right mx-2 my-1">
+            </a>
+            <div class="collapse" id="collapseExample">
+              <div class="card-body pl-3 pt-2">
+                <form>
+                  <div class="form-row">
+                    <div class="col form-inline">
+                      <label for="from">From </label>
+                      <input type="text" id="from" name="example" class="form-control ml-auto" placeholder="Like 10" list="from-mon">
+                    </div>
+                  </div>
+                  <div class="form-row mt-3">
+                    <div class="col form-inline">
+                      <label for="from">To </label>
+                      <input type="text" id="to" name="example" class="form-control ml-auto" placeholder="Like 10" list="to-mon">
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+          <div class="custom-control custom-switch py-2 left-nav d-none d-sm-none d-md-block">
+            <input type="checkbox" class="custom-control-input" id="image-only">
+            <label class="custom-control-label" for="image-only">Image only</label>
+          </div>
+        </div>
+        <div class="col-xl-9 col-lg-8 col-md-8 col-sm-11 ml-md-5 ml-sm-4 ml-4 mr-0 p-0">
+          <form class="input-group mt-4 mr-0 main-search" id="search-form">
+            {% csrf_token %}
+
+            <div class="input-group-prepend">
+              <button class="btn btn-search" type="button"><img src="{% static "bazimazi/images/search.png" %}" width="20" height="20" alt=""></button>
+            </div>
+            <input type="text" name="keyword" id="keyword" class="form-control search-box main-search" placeholder="Search in the ads by title..." aria-label="" aria-describedby="basic-addon1">
+
+          </form>
+          <div class="my-3 d-block d-md-none">
+            <button type="button" class="btn modal-btn red-btn mr-1" data-toggle="modal" data-target="#filter"><i class="fas fa-filter mr-2"></i>Filtering</button>
+            <div class="modal fade bd-example-modal-lg" id="filter" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+              <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">Filters</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div class="modal-body p-4 h-100">
+                    <div class="py-2 px-0 left-nav w-100">
+                      <a class="filtering-btn" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+                        <span class="mx-1">Price</span><img src="{% static "bazimazi/images/dropdown.png" %}" width="20" height="20" class="float-right mx-2 my-1">
+                      </a>
+                      <div class="collapse" id="collapseExample">
+                        <div class="card-body pl-3 pt-2">
+                          <form>
+                            <div class="form-row">
+                              <div class="col form-inline">
+                                <label for="from-2">From </label>
+                                <input type="text" id="from-2" name="example" class="form-control ml-auto" placeholder="Like 10" list="from-mon">
+                              </div>
+                            </div>
+                            <div class="form-row mt-3">
+                              <div class="col form-inline">
+                                <label for="to-2">To</label>
+                                <input type="text" id="to-2" name="example" class="form-control ml-auto" placeholder="Like 10" list="to-mon">
+                              </div>
+                            </div>
+                          </form>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="custom-control custom-switch py-2 left-nav w-100">
+                      <input type="checkbox" class="custom-control-input" id="image-only-2">
+                      <label class="custom-control-label" for="image-only-2">Image only</label>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <button type="button" class="btn modal-btn red-btn mr-1" data-toggle="modal" data-target="#categories"><i class="fa fa-bars mr-2" aria-hidden="true"></i>Categories</button>
+            <div class="modal fade bd-example-modal-lg" id="categories" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+              <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">Categories</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div class="modal-body p-0 h-100">
+                    <div class="w-100">
+                      {% for category in categories %}
+                        <p class="publish-ad-elem px-0 m-0 pl-3 category-link" data-category="{{category.name}}"><img src="{{category.image.url}}" width="25" height="25" alt="">{{category.name}}</p>
+                      {% endfor %}
+                    </div>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="main-body d-flex flex-row flex-wrap" id="ad-content">
+            {% for ad in ads %}
+              <a href="{% url 'ad' ad.title %}" id="ad_link" data-title="{{ad.title}}" class="ad" onclick="add_history(this)">
+                <div class="">
+                  <span class="ad-name p-2">{{ad.title}}</span>
+                  <span class="ad-price p-2">${{ad.price}}</span>
+
+                  {% if not ad.image %}
+                    <img src="{% static "bazimazi/images/no-image.png" %}" height="120" width="120" alt="">
+                  {% else %}
+                    <img src="{{ad.image.url}}" height="120" width="120" alt="">
+                  {% endif %}
+                </div>
+              </a>
+            {% endfor %}
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" ></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+
+    <script type="text/javascript">
+
+      $( document ).ready(function() {
+
+        var logged_in = {{logged_in}}
+
+        if (logged_in == "true"){
+          localStorage.setItem('history', JSON.stringify([]));
+        }
+
+        localStorage.setItem('city', "Every where");
+        if (localStorage.getItem('history') == null){
+          localStorage.setItem('history', JSON.stringify([]))
+        }
+
+        $("#city-btn").html(localStorage.getItem('city'));
+
+        $(".cities").click(function() {
+
+          localStorage.setItem('city', $(this).html())
+          $("#city-btn").html(localStorage.getItem('city'));
+          $("#city-modal").modal("toggle");
+
+          var token = '{{csrf_token}}';
+
+          $.ajax({
+              headers: { "X-CSRFToken": token },
+              url: "/region",
+              type: "POST",
+              data: {
+                  city: localStorage.getItem('city'),
+              },
+              success: function(data){
+
+                var data = data.result;
+
+                $("#ad-content").empty();
+
+                if (data.length > 0){
+                  for (ad of data){
+
+                    var ad_title = ad.title
+                    var ad_price = ad.price
+                    var ad_image = ad.image
+
+                    var span1 = $("<span></span>").text(ad_title).addClass("ad-name p-2");
+                    var span2 = $("<span></span>").text("$" + parseFloat(ad_price)).addClass("ad-price p-2");
+
+                    if (ad_image == "None"){
+                      var image = $("<img />").attr({
+                        height:120,
+                        width:120,
+                        src: "{% static 'bazimazi/images/no-image.png' %}"
+                      });
+                    }
+                    else{
+                      var image = $("<img />").attr({
+                        height:120,
+                        width:120,
+                        src: ad_image
+                      });
+                    }
+
+                    var div = $("<div></div>")
+                    div.append(span1);
+                    div.append(span2);
+                    div.append(image);
+
+                    var link = $("<a></a>").addClass("ad").attr({
+                      href: ad.url,
+                      id:"ad_link",
+                      "data-title":ad_title
+                    });
+
+                    link.append(div);
+
+                    $("#ad-content").append(link);
+
+                }
+
+              }
+
+            }
+
+          });
+
+        });
+
+      });
+
+      $("#choose").click(function() {
+
+        localStorage.setItem('city', $("#city-value").val())
+        $("#city-btn-2").html(localStorage.getItem('city'));
+        $("#city-modal").modal("toggle");
+
+        var token = '{{csrf_token}}';
+
+        $.ajax({
+            headers: { "X-CSRFToken": token },
+            url: "/region",
+            type: "POST",
+            data: {
+                city: localStorage.getItem('city'),
+            },
+            success: function(data){
+
+              var data = data.result;
+
+              $("#ad-content").empty();
+
+              if (data.length > 0){
+                for (ad of data){
+
+                  var ad_title = ad.title
+                  var ad_price = ad.price
+                  var ad_image = ad.image
+
+                  var span1 = $("<span></span>").text(ad_title).addClass("ad-name p-2");
+                  var span2 = $("<span></span>").text("$" + parseFloat(ad_price)).addClass("ad-price p-2");
+
+                  if (ad_image == "None"){
+                    var image = $("<img />").attr({
+                      height:120,
+                      width:120,
+                      src: "{% static 'bazimazi/images/no-image.png' %}"
+                    });
+                  }
+                  else{
+                    var image = $("<img />").attr({
+                      height:120,
+                      width:120,
+                      src: ad_image
+                    });
+                  }
+
+                  var div = $("<div></div>")
+                  div.append(span1);
+                  div.append(span2);
+                  div.append(image);
+
+                  var link = $("<a></a>").addClass("ad").attr({
+                    href: ad.url,
+                    id:"ad_link",
+                    "data-title":ad_title
+                  });
+
+                  link.append(div);
+
+                  $("#ad-content").append(link);
+
+              }
+
+            }
+
+          }
+
+        });
+
+    });
+
+    $("#search-form").submit(function(e) {
+
+      e.preventDefault();
+
+      var token = '{{csrf_token}}';
+
+      $.ajax({
+          headers: { "X-CSRFToken": token },
+          url: "/search_ad",
+          type: "POST",
+          data: {
+              keyword: $("#keyword").val(),
+          },
+          success: function(data){
+
+            $("#ad-content").empty();
+
+            var data = data.result;
+
+            $("#ad-content").empty();
+
+            if (data.length > 0){
+              for (ad of data){
+
+                var ad_title = ad.title
+                var ad_price = ad.price
+                var ad_image = ad.image
+
+                var span1 = $("<span></span>").text(ad_title).addClass("ad-name p-2");
+                var span2 = $("<span></span>").text("$" + parseFloat(ad_price)).addClass("ad-price p-2");
+
+                if (ad_image == "None"){
+                  var image = $("<img />").attr({
+                    height:120,
+                    width:120,
+                    src: "{% static 'bazimazi/images/no-image.png' %}"
+                  });
+                }
+                else{
+                  var image = $("<img />").attr({
+                    height:120,
+                    width:120,
+                    src: ad_image
+                  });
+                }
+
+                var div = $("<div></div>")
+                div.append(span1);
+                div.append(span2);
+                div.append(image);
+
+                var link = $("<a></a>").addClass("ad").attr({
+                  href: ad.url,
+                  id:"ad_link",
+                  "data-title":ad_title
+                });
+
+                link.append(div);
+
+                $("#ad-content").append(link);
+
+            }
+
+          }
+
+          }
+      });
+
+    });
+
+    $(".category-link").click(function() {
+
+        var token = '{{csrf_token}}';
+
+        $.ajax({
+            headers: { "X-CSRFToken": token },
+            url: "/category",
+            type: "POST",
+            data: {
+                category: $(this).data("category"),
+            },
+            success: function(data){
+
+              $("#ad-content").empty();
+
+              var data = data.result;
+
+              $("#ad-content").empty();
+
+              if (data.length > 0){
+                for (ad of data){
+
+                  var ad_title = ad.title
+                  var ad_price = ad.price
+                  var ad_image = ad.image
+
+                  var span1 = $("<span></span>").text(ad_title).addClass("ad-name p-2");
+                  var span2 = $("<span></span>").text("$" + parseFloat(ad_price)).addClass("ad-price p-2");
+
+                  if (ad_image == "None"){
+                    var image = $("<img />").attr({
+                      height:120,
+                      width:120,
+                      src: "{% static 'bazimazi/images/no-image.png' %}"
+                    });
+                  }
+                  else{
+                    var image = $("<img />").attr({
+                      height:120,
+                      width:120,
+                      src: ad_image
+                    });
+                  }
+
+                  var div = $("<div></div>")
+                  div.append(span1);
+                  div.append(span2);
+                  div.append(image);
+
+                  var link = $("<a></a>").addClass("ad").attr({
+                    href: ad.url,
+                    id:"ad_link",
+                    "data-title":ad_title
+                  });
+
+                  link.append(div);
+
+                  $("#ad-content").append(link);
+
+              }
+
+            }
+
+            }
+        });
+
+      });
+
+      var typingTimer;
+      var doneTypingInterval = 1000;
+      var $input = $('#to');
+
+      $input.on('keyup', function () {
+        clearTimeout(typingTimer);
+        typingTimer = setTimeout(doneTyping, doneTypingInterval);
+      });
+
+      $input.on('keydown', function () {
+        clearTimeout(typingTimer);
+      });
+
+      var typingTimer;
+      var doneTypingInterval = 1000;
+      var $input = $('#to-2');
+
+      $input.on('keyup', function () {
+        clearTimeout(typingTimer);
+        typingTimer = setTimeout(doneTyping, doneTypingInterval);
+      });
+
+      $input.on('keydown', function () {
+        clearTimeout(typingTimer);
+      });
+
+      function doneTyping () {
+
+        if ($("#from").val() != "" && $("#to").val() != ""){
+
+          var token = '{{csrf_token}}';
+
+          var spans = document.getElementsByClassName("ad-name");
+          var the_ads = []
+
+          for(i=0;i<spans.length;i++)
+          {
+            the_ads.push(spans[i].innerHTML);
+          }
+
+          $.ajax({
+              headers: { "X-CSRFToken": token },
+              url: "/price",
+              type: "POST",
+              data: {
+                  from: $("#from").val(),
+                  to: $("#to").val(),
+                  ads: JSON.stringify(the_ads)
+              },
+              success: function(data){
+
+                var data = data.result;
+
+                $("#ad-content").empty();
+
+                if (data.length > 0){
+                  for (ad of data){
+
+                    var ad_title = ad.title
+                    var ad_price = ad.price
+                    var ad_image = ad.image
+
+                    var span1 = $("<span></span>").text(ad_title).addClass("ad-name p-2");
+                    var span2 = $("<span></span>").text("$" + parseFloat(ad_price)).addClass("ad-price p-2");
+
+                    if (ad_image == "None"){
+                      var image = $("<img />").attr({
+                        height:120,
+                        width:120,
+                        src: "{% static 'bazimazi/images/no-image.png' %}"
+                      });
+                    }
+                    else{
+                      var image = $("<img />").attr({
+                        height:120,
+                        width:120,
+                        src: ad_image
+                      });
+                    }
+
+                    var div = $("<div></div>")
+                    div.append(span1);
+                    div.append(span2);
+                    div.append(image);
+
+                    var link = $("<a></a>").addClass("ad").attr({
+                      href: ad.url,
+                      id:"ad_link",
+                      "data-title":ad_title
+                    });
+
+                    link.append(div);
+
+                    $("#ad-content").append(link);
+
+                }
+
+              }
+
+            }
+
+          });
+
+        }
+      };
+
+      var the_ads = [];
+
+      $('#image-only').change(function(){
+          var c = this.checked;
+
+          var spans = document.getElementsByClassName("ad-name");
+          var the_ads_image = [];
+
+          for(i=0;i<spans.length;i++)
+          {
+            the_ads.push(spans[i].innerHTML);
+          }
+
+          the_ads_image = the_ads;
+
+          if (c == true){
+
+            var token = '{{csrf_token}}';
+
+            $.ajax({
+                headers: { "X-CSRFToken": token },
+                url: "/image",
+                type: "POST",
+                data: {
+                    ads: JSON.stringify(the_ads)
+                },
+                success: function(data){
+
+                  var data = data.result;
+
+                  $("#ad-content").empty();
+
+                  if (data.length > 0){
+                    for (ad of data){
+
+                      var ad_title = ad.title
+                      var ad_price = ad.price
+                      var ad_image = ad.image
+
+                      var span1 = $("<span></span>").text(ad_title).addClass("ad-name p-2");
+                      var span2 = $("<span></span>").text("$" + parseFloat(ad_price)).addClass("ad-price p-2");
+
+                      if (ad_image == "None"){
+                        var image = $("<img />").attr({
+                          height:120,
+                          width:120,
+                          src: "{% static 'bazimazi/images/no-image.png' %}"
+                        });
+                      }
+                      else{
+                        var image = $("<img />").attr({
+                          height:120,
+                          width:120,
+                          src: ad_image
+                        });
+                      }
+
+                      var div = $("<div></div>")
+                      div.append(span1);
+                      div.append(span2);
+                      div.append(image);
+
+                      var link = $("<a></a>").addClass("ad").attr({
+                        href: ad.url,
+                        id:"ad_link",
+                        "data-title":ad_title
+                      });
+
+                      link.append(div);
+
+                      $("#ad-content").append(link);
+
+                  }
+
+                }
+
+              }
+
+            });
+
+          }
+          else{
+
+            var token = '{{csrf_token}}';
+
+            $.ajax({
+                headers: { "X-CSRFToken": token },
+                url: "/image_rev",
+                type: "POST",
+                data: {
+                    ads: JSON.stringify(the_ads_image)
+                },
+                success: function(data){
+
+                  var data = data.result;
+
+                  $("#ad-content").empty();
+
+                  if (data.length > 0){
+                    for (ad of data){
+
+                      var ad_title = ad.title
+                      var ad_price = ad.price
+                      var ad_image = ad.image
+
+                      var span1 = $("<span></span>").text(ad_title).addClass("ad-name p-2");
+                      var span2 = $("<span></span>").text("$" + parseFloat(ad_price)).addClass("ad-price p-2");
+
+                      if (ad_image == "None"){
+                        var image = $("<img />").attr({
+                          height:120,
+                          width:120,
+                          src: "{% static 'bazimazi/images/no-image.png' %}"
+                        });
+                      }
+                      else{
+                        var image = $("<img />").attr({
+                          height:120,
+                          width:120,
+                          src: ad_image
+                        });
+                      }
+
+                      var div = $("<div></div>")
+                      div.append(span1);
+                      div.append(span2);
+                      div.append(image);
+
+                      var link = $("<a></a>").addClass("ad").attr({
+                        href: ad.url,
+                        id:"ad_link",
+                        "data-title":ad_title
+                      });
+
+                      link.append(div);
+
+                      $("#ad-content").append(link);
+
+                  }
+
+                }
+
+              }
+
+            });
+
+          }
+
+      });
+
+      var the_ads = [];
+
+      $('#image-only-2').change(function(){
+          var c = this.checked;
+
+          var spans = document.getElementsByClassName("ad-name");
+          var the_ads_image = [];
+
+          for(i=0;i<spans.length;i++)
+          {
+            the_ads.push(spans[i].innerHTML);
+          }
+
+          the_ads_image = the_ads;
+
+          if (c == true){
+
+            var token = '{{csrf_token}}';
+
+            $.ajax({
+                headers: { "X-CSRFToken": token },
+                url: "/image",
+                type: "POST",
+                data: {
+                    ads: JSON.stringify(the_ads)
+                },
+                success: function(data){
+
+                  var data = data.result;
+
+                  $("#ad-content").empty();
+
+                  if (data.length > 0){
+                    for (ad of data){
+
+                      var ad_title = ad.title
+                      var ad_price = ad.price
+                      var ad_image = ad.image
+
+                      var span1 = $("<span></span>").text(ad_title).addClass("ad-name p-2");
+                      var span2 = $("<span></span>").text("$" + parseFloat(ad_price)).addClass("ad-price p-2");
+
+                      if (ad_image == "None"){
+                        var image = $("<img />").attr({
+                          height:120,
+                          width:120,
+                          src: "{% static 'bazimazi/images/no-image.png' %}"
+                        });
+                      }
+                      else{
+                        var image = $("<img />").attr({
+                          height:120,
+                          width:120,
+                          src: ad_image
+                        });
+                      }
+
+                      var div = $("<div></div>")
+                      div.append(span1);
+                      div.append(span2);
+                      div.append(image);
+
+                      var link = $("<a></a>").addClass("ad").attr({
+                        href: ad.url,
+                        id:"ad_link",
+                        "data-title":ad_title
+                      });
+
+                      link.append(div);
+
+                      $("#ad-content").append(link);
+
+                  }
+
+                }
+
+              }
+
+            });
+
+          }
+          else{
+
+            var token = '{{csrf_token}}';
+
+            $.ajax({
+                headers: { "X-CSRFToken": token },
+                url: "/image_rev",
+                type: "POST",
+                data: {
+                    ads: JSON.stringify(the_ads_image)
+                },
+                success: function(data){
+
+                  var data = data.result;
+
+                  $("#ad-content").empty();
+
+                  if (data.length > 0){
+                    for (ad of data){
+
+                      var ad_title = ad.title
+                      var ad_price = ad.price
+                      var ad_image = ad.image
+
+                      var span1 = $("<span></span>").text(ad_title).addClass("ad-name p-2");
+                      var span2 = $("<span></span>").text("$" + parseFloat(ad_price)).addClass("ad-price p-2");
+
+                      if (ad_image == "None"){
+                        var image = $("<img />").attr({
+                          height:120,
+                          width:120,
+                          src: "{% static 'bazimazi/images/no-image.png' %}"
+                        });
+                      }
+                      else{
+                        var image = $("<img />").attr({
+                          height:120,
+                          width:120,
+                          src: ad_image
+                        });
+                      }
+
+                      var div = $("<div></div>")
+                      div.append(span1);
+                      div.append(span2);
+                      div.append(image);
+
+                      var link = $("<a></a>").addClass("ad").attr({
+                        href: ad.url,
+                        id:"ad_link",
+                        "data-title":ad_title
+                      });
+
+                      link.append(div);
+
+                      $("#ad-content").append(link);
+
+                  }
+
+                }
+
+              }
+
+            });
+
+          }
+
+      });
+
+      function add_history(identifier){
+
+        var history = JSON.parse(localStorage.getItem('history'));
+        var ad_title = $(identifier).data("title");
+
+        if (history.length > 20 && history.includes(ad_title) != true){
+
+          history.shift();
+          history.push(ad_title);
+
+        }
+        if (history.length < 20 && history.includes(ad_title) != true){
+          history.push(ad_title);
+        }
+
+        localStorage.setItem('history', JSON.stringify(history))
+
+      }
+
+    </script>
+
+  </body>
+</html>

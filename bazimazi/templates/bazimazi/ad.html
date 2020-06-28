@@ -1,0 +1,168 @@
+{% load static %}
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="{% static "bazimazi/styles/style.css" %}">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+
+    <link rel="icon" href="{% static "bazimazi/images/bazimazi-icon-3.png" %}" type="image/gif" sizes="16x16">
+
+    <title>BaziMazi</title>
+  </head>
+  <body>
+
+    <nav class="navbar navbar-expand-lg navbar-light top-nav px-2">
+
+      <a class="navbar-brand text-blue mr-0" href="{% url 'index' %}">BaziMazi</a>
+
+      <form class="form-inline ml-3 mr-none d-none d-sm-none d-md-block mr-auto">
+        <div class="mr-3">
+          <button type="button" class="btn modal-btn pr-0" data-toggle="modal" data-target="#city-modal">
+             <span id="city-btn">New York</span>
+            <img src="{% static "bazimazi/images/dropdown.png" %}" class="modal-btn-img ml-1 mr-2" width="20" height="20" alt="">
+          </button>
+        </div>
+      </form>
+      <form class="form-inline d-block d-sm-block d-md-none mr-auto ml-2">
+        <div class="ml-0">
+          <button type="button" id="city-btn" class="btn modal-btn p-0 pl-2 ml-0" style="border:1px solid white;" data-toggle="modal" data-target="#city-modal">
+             <span id="city-btn">New York</span>
+            <img src="{% static "bazimazi/images/dropdown.png" %}" class="modal-btn-img " width="20" height="20" alt="">
+          </button>
+        </div>
+      </form>
+      <div class="modal fade bd-example-modal-xl" id="city-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+        <div class="modal-dialog modal-xl" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLongTitle">Choose your state</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body p-4 d-none d-sm-block">
+              <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                  <button class="btn btn-search" type="button"><img src="{% static "bazimazi/images/search.png" %}" width="20" height="20" alt=""></button>
+                </div>
+                <input type="text" class="form-control search-box" placeholder="Search a state..." aria-label="" aria-describedby="basic-addon1">
+              </div>
+              <br>
+              <span class=" text-grey-dark">Most visited states:</span>
+              <div class="d-md-flex flex-wrap mt-3">
+                <button class="cities" value="{{state.name}}">California</button>
+                <button class="cities" value="{{state.name}}">New Jersey</button>
+                <button class="cities" value="{{state.name}}">Alaska</button>
+                <button class="cities" value="{{state.name}}">Massachusetts</button>
+                <button class="cities" value="{{state.name}}">New York</button>
+                <button class="cities" value="{{state.name}}">Texas</button>
+                <button class="cities" value="{{state.name}}">Indiana</button>
+              </div>
+              <br>
+              <span class="text-grey-dark">All the states:</span>
+              <div class="d-md-flex flex-wrap mt-3">
+                {% for state in states %}
+                  <button value="{{state.name}}" class="cities">{{state.name}}</button>
+                {% endfor %}
+              </div>
+            </div>
+            <div class="modal-body p-4 d-block d-sm-none">
+              <input type="text" name="example" class="form-control" list="cities">
+              <datalist id="cities">
+                {% for state in states %}
+                  <option value="{{state.name}}" class="cities"></option>
+                {% endfor %}
+              </datalist>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+        <div class="navbar-nav">
+          <a class="nav-item navbar-links" href="{% url 'myads' %}">My ads</a>
+          <a class="nav-item navbar-links" href="{% url 'chat' %}" target="_blank">Chat</a>
+        </div>
+      </div>
+
+      <form class="form-inline mr-1">
+        <a href="{% url 'publish_ad' %}"><button class="btn ad-btn px-2" type="button">Publish an ad</button></a>
+      </form>
+
+      <div class="dropdown d-block d-sm-block d-md-block d-lg-none">
+        <a class="btn btn-sm ml-0" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <span class="navbar-toggler-icon"></span>
+        </a>
+        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuLink">
+          <a class="dropdown-item" href="{% url 'myads' %}">My ads</a>
+          <a class="dropdown-item" href="{% url 'chat' %}" target="_blank">Chat</a>
+        </div>
+      </div>
+
+    </nav>
+
+    <div class="container-fluid mt-4">
+      <div class="row mx-0">
+        {% if not ad.image %}
+          <img src="{% static "bazimazi/images/no-image.png" %}" class="float-right ad-image col-xl-5 col-lg-7 col-md-7 col-sm-12 col-12" alt="">
+        {% else %}
+          <img src="{{ad.image.url}}" class="float-right ad-image col-xl-5 col-lg-7 col-md-7 col-sm-12 col-12" alt="">
+        {% endif %}
+        <div class="col-xl-6 col-lg-4 col-md-4 col-sm-12 col-12 ml-xl-4 ml-lg-4 ml-md-1">
+          <p class="ad-title">{{ad.title}}</p>
+          <button class="btn btn-primary ad-btn" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample" style="border:none;">
+            Call information
+          </button>
+          <button type="button" name="button" class="btn ad-btns"><i class="fas fa-comments"></i> Chat</button>
+          <a href="{% url 'save' ad.title %}" name="button" class="btn ad-btns mr-3 float-right">Save</a>
+          <div class="collapse" id="collapseExample">
+            <div class="card-body pl-0">
+              <span class="">Phone number</span>
+              <span class="float-right ad-phone mr-3 mt-1">{{ad.phone_number}}</span>
+            </div>
+          </div>
+          <table class="table table-borderless mt-5">
+            <tbody>
+              <tr class="ad-table-rows">
+                <th class="ad-table-heads">Category</th>
+                <td class="float-right">{{ad.category}}</td>
+              </tr>
+              <tr class="ad-table-rows">
+                <th class="ad-table-heads">Place</th>
+                <td class="float-right">{{ad.state}}</td>
+              </tr>
+              <tr class="ad-table-rows">
+                <th class="ad-table-heads">Ad type</th>
+                <td class="float-right">{{ad.type}}</td>
+              </tr>
+              <tr class="ad-table-rows">
+                <th class="ad-table-heads">Price</th>
+                <td class="float-right">${{ad.price}}</td>
+              </tr>
+            </tbody>
+          </table>
+          <p class="description mt-5 text-center">
+            {{ad.description}}
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+  </body>
+</html>

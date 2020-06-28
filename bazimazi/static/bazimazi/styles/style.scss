@@ -1,0 +1,434 @@
+$red : #a62626;
+$red-hover : #be3737;
+$text-blue : #1da1f2;
+$text-grey : #9b9b9b;
+$text-grey-dark : #7f7f7f;
+$text-category-grey : #6d6d6d;
+$text-black : #1f1f1f;
+$border-grey-dark : #aaabab;
+$border-grey : #dededf;
+$hovered-border-grey : #b2b3b3;
+
+html, body{
+  height: 100%;
+}
+
+.text-blue{
+  color : $text-blue;
+}
+
+.text-black{
+  color : $text-black;
+}
+
+.text-grey{
+  color: $text-grey;
+}
+
+%text-grey-dark{
+  color: $text-grey-dark;
+}
+
+.top-nav{
+  height: 7%;
+  padding: 12px 15px;
+  border-bottom: 1px solid $border-grey;
+}
+@media screen and (min-height: 800px) and (max-height: 1000px) {
+    .top-nav {
+        height: 7%;
+    }
+}
+@media screen and (max-height: 800px) {
+    .top-nav {
+        height: 10%;
+    }
+}
+
+.navbar-links{
+  color: $text-black;
+  display: block;
+  padding: .5rem 1rem;
+}
+.navbar-links:hover{
+  color: $text-grey;
+  text-decoration: none;
+}
+
+.modal-btn{
+  color: $text-grey;
+  background-color: white;
+  border: 1px solid $border-grey;
+}
+.modal-btn:hover{
+  color: $text-grey-dark;
+  border: 1px solid $hovered-border-grey;
+}
+
+.ad-btn{
+  background-color: $red;
+  color : white;
+  font-weight: bold;
+}
+.ad-btn:hover{
+  background-color: $red-hover;
+  color: white;
+}
+
+.btn-sm{
+  border: 1px solid $text-grey;
+  border-radius: 7%;
+  padding: 7px 10px;
+}
+
+.btn-search{
+  border: 1px solid $border-grey;
+}
+
+.search-box{
+  border: 1px solid $border-grey;
+}
+
+.cities{
+  width: 18%;
+  margin: 7px;
+  text-align: center;
+  color: $red;
+  font-weight: bold;
+  background-color: white;
+  border: 1px solid  $red;
+  border-radius: 4%;
+  padding: 10px 30px;
+}
+@media screen and (min-width: 800px) and (max-width: 1000px) {
+    .cities {
+        width: 30%;
+    }
+}
+@media screen and (max-width: 800px) {
+    .cities {
+        width: 45%;
+    }
+}
+.cities:hover{
+  cursor: pointer;
+  color: white;
+  background-color: $red;
+  text-decoration: none;
+}
+
+.category-text-title{
+  color: $text-category-grey;
+}
+.category-text-title:hover{
+  cursor: default;
+}
+
+.category-text{
+  color: $text-category-grey;
+}
+.category-text:hover{
+  color: $red;
+}
+
+.left-nav{
+  width: 280px;
+  border-bottom: 1px solid gainsboro;
+  margin: 0px;
+}
+
+.custom-control-input:checked~.custom-control-label::before {
+    color: #fff;
+    border-color: $red;
+    background-color: $red;
+}
+
+.filtering-btn{
+  color: $text-black;
+  text-decoration: none;
+}
+.filtering-btn:hover{
+  text-decoration: none;
+  color: $text-black;
+}
+
+.my-ads{
+  width: 60%;
+  height: 400px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.nav-my-ads{
+  height: 30px;
+  border-bottom: 2px solid $border-grey
+}
+
+.navbar-links-my-ads{
+  color: $text-grey;
+  bottom: 10px;
+}
+.navbar-links-my-ads:hover{
+  color: $text-black;
+  text-decoration: none;
+}
+
+.active-my-ads{
+  border-bottom: 2px solid $red;
+  padding-bottom: 6px;
+  color: $red;
+  border-collapse: collapse;
+  text-decoration: none;
+}
+
+.bottom-content{
+  width: 60%;
+  height: 400px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.publish-ad{
+  height: 93%;
+  width: 50%;
+}
+@media screen and (min-width: 800px) and (max-width: 1000px) {
+    .publish-ad {
+        width: 60%;
+    }
+}
+@media screen and (max-width: 800px) {
+    .publish-ad {
+        width: 90%;
+    }
+}
+
+.publish-ad-title{
+  font-weight: bold;
+  font-size: 25px;
+}
+
+.publish-ad-cat{
+  border: 1px solid #ededed;
+  border-radius: 2px;
+  padding: 10px;
+  height: 74%;
+}
+
+.publish-ad-elem{
+  margin: 0px 10px;
+  border-bottom: 1px solid #ededed;
+  padding: 18px;
+}
+.publish-ad-elem:hover{
+  background-color: #fafafa;
+  cursor: pointer;
+}
+
+.publish-ad-elem-last{
+  margin: 0px 10px;
+  margin-bottom: 10px;
+  padding: 18px;
+}
+.publish-ad-elem-last:hover{
+  background-color: #fafafa;
+  cursor: pointer;
+}
+
+.link-no-un{
+  color: black;
+  text-decoration: none;
+}
+.link-no-un:hover{
+  color: black;
+  text-decoration: none;
+}
+
+.change-cat{
+  height: 13%;
+  border: 1px solid #ededed;
+  border-radius: 2px;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+@media screen and (min-width: 800px) and (max-width: 1000px) {
+    .change-cat {
+        height: 13%;
+    }
+}
+@media screen and (max-width: 800px) {
+    .change-cat {
+        height: 10%;
+    }
+}
+
+.change-link{
+  color: $red;
+  vertical-align: center;
+}
+
+.ad-info{
+  border: 1px solid #ededed;
+  padding: 20px 25px;
+}
+
+.my-ads-text{
+  text-align: center;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.aside-nav{
+  height: 90%;
+}
+
+.main-search{
+  width: 70%;
+  height: 55px;
+}
+@media screen and (min-width: 775px) and (max-width: 1000px) {
+    .main-search {
+        width: 70%;
+    }
+}
+@media screen and (max-width: 775px) {
+    .main-search {
+        width: 93%;
+    }
+}
+
+.red-btn{
+  padding: 2px 15px;
+  border: 1px solid $red;
+  background-color: white;
+  color : $red;
+  border-radius: 15px;
+}
+.red-btn:hover{
+  color: white;
+  background-color: $red;
+  cursor: pointer;
+}
+
+.main-body{
+  a {
+    border-bottom: 1px solid $border-grey;
+    float: left;
+    position: relative;
+    margin: 15px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    text-decoration: none;
+    text-transform: uppercase;
+    @extend %text-grey-dark;
+  }
+  a:after {
+    border-bottom: 0px solid white;
+    content: '';
+    display: block;
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    height: 1px;
+    width: 0;
+    background: transparent;
+    text-decoration: none;
+  }
+  a:after {
+    transition: width .5s ease, background-color .5s ease, left .5s ease;
+    text-decoration: none;
+  }
+  a:hover:after {
+    width: 100%;
+    left: 0;
+    background: $red;
+    text-decoration: none;
+  }
+  a:hover{
+    @extend %text-grey-dark;
+  }
+}
+
+.ad{
+  width: 30%;
+}
+@media screen and (min-width: 1200px) and (max-width: 1500px) {
+    .ad {
+        width: 30%;
+    }
+}
+@media screen and (min-width: 600px) and (max-width: 1200px) {
+    .ad {
+        width: 40%;
+    }
+}
+@media screen and (max-width: 600px) {
+    .ad {
+        width: 90%;
+    }
+}
+
+.ad-name{
+  float: right;
+}
+
+.ad-price{
+  position:absolute;
+  bottom:0;
+  right:0
+}
+
+.ad-image{
+  height: auto;
+}
+
+.ad-title{
+  font-size: 30px;
+  font-weight: 500;
+}
+
+.ad-phone{
+  color: $red;
+}
+
+.copy-btn{
+  color: black;
+  font-size: 13px;
+  padding: 5px 10px;
+  border: 1px solid black;
+  border-radius: 4px;
+}
+.copy-btn:hover{
+  background-color: $border-grey;
+}
+
+.ad-btns{
+  color: black;
+  padding: 5px 8px;
+  border: 1px solid black;
+  border-radius: 4px;
+}
+.ad-btns:hover{
+  background-color: $border-grey;
+}
+
+.ad-table-rows{
+  border-bottom: 1px solid $border-grey;
+}
+
+.ad-table-heads{
+  font-weight: normal;
+  @extend %text-grey-dark;
+}
+
+.sign-form {
+  width: 700px;
+  margin: 0 auto;
+  color: $red;
+}
+@media screen and (max-width: 700px) {
+  .sign-form {
+    width: 90%;
+  }
+}
