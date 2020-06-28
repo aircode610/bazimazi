@@ -10,18 +10,32 @@ import json
 # Create your views here.
 
 def index(request):
-    if request.session["logged_in"] == True:
-        l = "true"
-    else:
+    try:
+        if request.session["logged_in"] == True:
+            l = "true"
+        else:
+            l = "false"
+
+        context = {
+            "ads" : Ad.objects.all(),
+            "types" : Type.objects.all(),
+            "categories" : Category.objects.all(),
+            "states" : State.objects.all(),
+            "logged_in" : l
+        }
+        return render(request, "bazimazi/index.html", context)
+
+    except:
+        request.session["logged_in"] = False
         l = "false"
 
-    context = {
-        "ads" : Ad.objects.all(),
-        "types" : Type.objects.all(),
-        "categories" : Category.objects.all(),
-        "states" : State.objects.all(),
-        "logged_in" : l
-    }
+        context = {
+            "ads" : Ad.objects.all(),
+            "types" : Type.objects.all(),
+            "categories" : Category.objects.all(),
+            "states" : State.objects.all(),
+            "logged_in" : l
+        }
 
     return render(request, "bazimazi/index.html", context)
 
