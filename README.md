@@ -19,9 +19,6 @@ If you click on one of the ads the *ad.html* file will open. It contains the ad'
 There is a button on the right side of the navbar that is linked to the *publish-ad.html*. You can publish your ad on this page. First, you have to choose which category your ad is about and then you can write a description of your ad, add an image, choose your state, and... and then you can publish the ad and it will be shown to all the users.
 
 <img src="images/publish-ad.PNG" alt="publish-ad.html">
-
-***
-
 <img src="images/publish.PNG" alt="publish.html">
 
 ***
@@ -29,13 +26,7 @@ There is a button on the right side of the navbar that is linked to the *publish
 There are two links in the navbar. One of them is my ads that will take you to the *my-ads.html* page you can see the ads that you have published and if you haven't signed in yet there is a sign in button.This page has three tabs(my-ads, history and saved ads) that each one of them takes you to another page. 
 
 <img src="images/my-ads.PNG" alt="my-ads.html">
-
-***
-
 <img src="images/saved-ads.PNG" alt="saved-ads.html">
-
-***
-
 <img src="images/history.PNG" alt="history.html">
 
 ***
