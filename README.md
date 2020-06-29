@@ -1,13 +1,13 @@
 # BaziMazi
 
-This website is about trading or exchanging video games and the things related to gaming (e.g. consoles) by publishing ads.
+**This website is about trading or exchanging video games and the things related to gaming (e.g. consoles) by publishing ads.**
 
 First of all we need 2 packages names as Django (the framework for writing web projects using python) and Pillow (for uploading images in our database). They are included in requirements.txt. So be sure to install the requirements before running the application by using this command --> ```pip3 install -r requirements.txt```
 
-index.html contains all of the things on the landing page like navbar, left navbar,  main body that includes all of the ads and a search box.It also
-includes all of  the javascript and ajax code for filtering ads.
+*index.html* contains all of the things on the landing page like navbar, left navbar,  main body that includes all of the ads and a search box. It also
+includes all of the javascript and ajax code for filtering ads.
 
-![index page](file:///C:/Users/Aircode/Desktop/index.PNG)
+![index page](C:/Users/Aircode/Desktop/index.PNG)
 
 If you click on one of  the ads the ad.html file will open. It contains the ad's image and description. 
 There is a button on the right side of the navbar  that is linked to the publish-ad.html. You can publish your ad in this page. First you have to choose 
