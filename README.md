@@ -7,7 +7,7 @@ First of all we need 2 packages names as Django (the framework for writing web p
 *index.html* contains all of the things on the landing page like navbar, left navbar,  main body that includes all of the ads and a search box. It also
 includes all of the javascript and ajax code for filtering ads.
 
-![index page](C:/Users/Aircode/Desktop/index.PNG)
+![index page](images/index.PNG)
 
 If you click on one of  the ads the ad.html file will open. It contains the ad's image and description. 
 There is a button on the right side of the navbar  that is linked to the publish-ad.html. You can publish your ad in this page. First you have to choose 
