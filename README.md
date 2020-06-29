@@ -50,3 +50,5 @@ the other pages would change their sizes automatically.
 <img src="images/responsive.PNG" alt="responsive">
 
 ***
+
+**Watch all of my CS50's Web Programming with Python and JavaScript projects videos here: ** https://www.youtube.com/watch?v=taz8kCE_kBs&list=PLMmG0ZlUCOZLE9nKuDH0uvbppuA_ByOuM
