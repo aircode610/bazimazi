@@ -6,7 +6,7 @@ First of all, we need 2 packages names as Django (the framework for writing web 
 
 *index.html* contains all of the things on the landing page like navbar, left navbar, the main body that includes all of the ads, and a search box. It also includes all of the javascript and ajax code for filtering ads.
 
-<img src="images/index.PNG" width="500" alt="index.html">
+<img src="images/index.PNG" alt="index.html">
 
 If you click on one of the ads the *ad.html* file will open. It contains the ad's image and description. There are 3 buttons on this page: Save button (which saves the ad for you), Chat button (it opens a chat room with the publisher of the ad), and the Call Information button which shows you the phone number of the publisher.
 
