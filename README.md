@@ -75,12 +75,19 @@ Multi-criteria search system with real-time AJAX filtering by:
 ## Features
 
 🎮 **Gaming Marketplace**: Specialized platform for video games and console trading
+
 🔍 **Smart Filtering**: Multi-dimensional search with real-time updates
+
 📱 **Responsive UI**: Mobile-optimized Bootstrap interface
+
 💾 **Save System**: Personal ad collection and management
+
 👤 **User Authentication**: Email verification and session management
+
 🛠️ **Admin Panel**: Content management through Django admin
+
 🖼️ **Image Management**: Pillow integration for ad images
+
 ⚡ **AJAX Integration**: Seamless user experience with dynamic content loading
 
 ## Dependencies
